@@ -183,11 +183,11 @@ class BaseAgent:
         }
 
     def check_requirements(self):
-        if not hasattr(self, "requirements") or not self.requirements:
-            return True
-        for requirement in self.requirements:
-            if requirement not in os.environ:
-                raise ValueError(f"没有配置{requirement} 环境变量，请在 src/.env 文件中配置，并重新启动服务")
+        # if not hasattr(self, "requirements") or not self.requirements:
+        #     return True
+        # for requirement in self.requirements:
+        #     if requirement not in os.environ:
+        #         raise ValueError(f"没有配置{requirement} 环境变量，请在 src/.env 文件中配置，并重新启动服务")
         return True
 
     async def stream_values(self, messages: list[str], config_schema: RunnableConfig = None, **kwargs):

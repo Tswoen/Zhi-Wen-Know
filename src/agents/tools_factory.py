@@ -7,7 +7,9 @@ from pydantic import BaseModel, Field
 from langchain_core.tools import StructuredTool, tool
 from langchain_tavily import TavilySearch
 
-from src import config, graph_base, knowledge_base
+from src import config
+# from src import (config,graph_base, knowledge_base)
+# from src import graph_base, knowledge_base
 from src.utils import logger
 
 
@@ -24,34 +26,34 @@ def get_all_tools():
     tools = _TOOLS_REGISTRY.copy()
 
     # 获取所有知识库
-    for db_Id, retrieve_info in knowledge_base.get_retrievers().items():
-        name = f"retrieve_{db_Id[:8]}" # Deepseek does not support non-alphanumeric characters in tool names
-        description = (
-            f"使用 {retrieve_info['name']} 知识库进行检索。\n"
-            f"下面是这个知识库的描述：\n{retrieve_info['description']}"
-        )
-
-        # 创建异步工具，确保正确处理异步检索器
-        async def async_retriever_wrapper(query_text: str, db_id=db_Id):
-            """异步检索器包装函数"""
-            retriever = retrieve_info["retriever"]
-            try:
-                if asyncio.iscoroutinefunction(retriever):
-                    result = await retriever(query_text)
-                else:
-                    result = retriever(query_text)
-                return result
-            except Exception as e:
-                logger.error(f"Error in retriever {db_id}: {e}")
-                return f"检索失败: {str(e)}"
-
-        # 使用 StructuredTool.from_function 创建异步工具
-        tools[name] = StructuredTool.from_function(
-            coroutine=async_retriever_wrapper,  # 指定为协程
-            name=name,
-            description=description,
-            args_schema=KnowledgeRetrieverModel
-        )
+    # for db_Id, retrieve_info in knowledge_base.get_retrievers().items():
+    #     name = f"retrieve_{db_Id[:8]}" # Deepseek does not support non-alphanumeric characters in tool names
+    #     description = (
+    #         f"使用 {retrieve_info['name']} 知识库进行检索。\n"
+    #         f"下面是这个知识库的描述：\n{retrieve_info['description']}"
+    #     )
+    #
+    #     # 创建异步工具，确保正确处理异步检索器
+    #     async def async_retriever_wrapper(query_text: str, db_id=db_Id):
+    #         """异步检索器包装函数"""
+    #         retriever = retrieve_info["retriever"]
+    #         try:
+    #             if asyncio.iscoroutinefunction(retriever):
+    #                 result = await retriever(query_text)
+    #             else:
+    #                 result = retriever(query_text)
+    #             return result
+    #         except Exception as e:
+    #             logger.error(f"Error in retriever {db_id}: {e}")
+    #             return f"检索失败: {str(e)}"
+    #
+    #     # 使用 StructuredTool.from_function 创建异步工具
+    #     tools[name] = StructuredTool.from_function(
+    #         coroutine=async_retriever_wrapper,  # 指定为协程
+    #         name=name,
+    #         description=description,
+    #         args_schema=KnowledgeRetrieverModel
+    #     )
 
     return tools
 
@@ -98,17 +100,17 @@ def calculator(a: float, b: float, operation: str) -> float:
     else:
         raise ValueError(f"Invalid operation: {operation}, only support add, subtract, multiply, divide")
 
-@tool
-def query_knowledge_graph(query: Annotated[str, "The keyword to query knowledge graph."]):
-    """Use this to query knowledge graph."""
-    return graph_base.query_node(query, hops=2)
+# @tool
+# def query_knowledge_graph(query: Annotated[str, "The keyword to query knowledge graph."]):
+#     """Use this to query knowledge graph."""
+#     return graph_base.query_node(query, hops=2)
 
 
 
 
 _TOOLS_REGISTRY = {
     "Calculator": calculator,
-    "QueryKnowledgeGraph": query_knowledge_graph,
+    # "QueryKnowledgeGraph": query_knowledge_graph,
 }
 
 if config.enable_web_search:

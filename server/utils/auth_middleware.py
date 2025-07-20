@@ -9,6 +9,7 @@ from server.models.user_model import User
 from server.utils.auth_utils import AuthUtils
 
 # 定义OAuth2密码承载器，指定token URL
+# OAuth2PasswordBearer用于从请求中获取token，后面的tokenurl在运行中不起作用，只会在生成的Swagger的api文档中展示，告诉前端如果没有token应该向这个url中获取，实际将tokenUrl改成任意值都能正常运行
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/auth/token", auto_error=False)
 
 # 公开路径列表，无需登录即可访问

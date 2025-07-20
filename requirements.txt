@@ -1,0 +1,44 @@
+# FastAPI 及其依赖
+fastapi
+uvicorn
+starlette
+
+# 数据库相关
+sqlalchemy
+psycopg2-binary  # 如果使用 PostgreSQL
+mysql-connector-python  # 如果使用 MySQL
+#sqlite3  # 如果使用 SQLite（默认已包含，但可选）
+
+# JWT 认证
+python-jose
+passlib
+python-multipart
+
+# LangChain 及其依赖
+langchain
+langgraph
+langchain-openai  # 如果使用 OpenAI 的模型
+langchain-core
+pydantic
+pydantic-settings  # 如果使用了 settings 管理配置
+openai
+langchain_huggingface
+langchain_tavily
+
+# 前端构建依赖（Vue）
+# 注意：这些通常在 package.json 中管理，但如果你使用 Python 构建前端（如通过 Pyodide 或 FastAPI 的静态文件服务）
+# vue>=3.2.0
+# vue-router>=4.0.0
+# pinia>=2.0.0
+# vite>=2.9.0,<3.0.0
+
+# 日志与配置
+python-dotenv
+colorlog
+
+# 其他工具库
+jinja2
+requests
+python-slugify
+jsonschema
+tqdm

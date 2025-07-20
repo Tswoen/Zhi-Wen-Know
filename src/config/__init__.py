@@ -40,7 +40,7 @@ class Config(SimpleConfig):
         super().__init__()
         self._config_items = {}
         self.save_dir = os.getenv('SAVE_DIR', 'saves')
-        self.filename = str(Path(f"{self.save_dir}/config/base.yaml"))
+        self.filename = str(Path(f"../../{self.save_dir}/config/base.yaml"))
         os.makedirs(os.path.dirname(self.filename), exist_ok=True)
 
         self._update_models_from_file()
@@ -51,12 +51,12 @@ class Config(SimpleConfig):
         self.add_item("enable_web_search", default=False, des="是否开启网页搜索（注：现阶段会根据 TAVILY_API_KEY 自动开启，无法手动配置，将会在下个版本移除此配置项）")  # noqa: E501
         # 默认智能体配置
         self.add_item("default_agent_id", default="", des="默认智能体ID")
-        # 模型配置
-        ## 注意这里是模型名，而不是具体的模型路径，默认使用 HuggingFace 的路径
-        ## 如果需要自定义本地模型路径，则在 src/.env 中配置 MODEL_DIR
+        # # 模型配置
+        # ## 注意这里是模型名，而不是具体的模型路径，默认使用 HuggingFace 的路径
+        # ## 如果需要自定义本地模型路径，则在 src/.env 中配置 MODEL_DIR
         self.add_item("model_provider", default="siliconflow", des="模型提供商", choices=list(self.model_names.keys()))
         self.add_item("model_name", default="Qwen/Qwen3-32B", des="模型名称")
-
+        #
         self.add_item("embed_model", default="siliconflow/BAAI/bge-m3", des="Embedding 模型", choices=list(self.embed_model_names.keys()))
         self.add_item("reranker", default="siliconflow/BAAI/bge-reranker-v2-m3", des="Re-Ranker 模型", choices=list(self.reranker_names.keys()))  # noqa: E501
         ### <<< 默认配置结束
@@ -98,8 +98,11 @@ class Config(SimpleConfig):
             _models_private = {}
 
         # 修改为按照子元素合并
-        # _models = {**_models, **_models_private}
-
+        # 使用字典解包语法{**a, **b}进行配置合并，这相当于：
+        #
+        # 如果b中存在与a相同的键，b的值会覆盖a的值
+        # 如果b中存在a没有的键，这些键会被添加到结果中
+        # 如果b不存在（私有配置文件缺失），则使用a的全部内容
         self.model_names = {**_models["MODEL_NAMES"], **_models_private.get("MODEL_NAMES", {})}
         self.embed_model_names = {**_models["EMBED_MODEL_INFO"], **_models_private.get("EMBED_MODEL_INFO", {})}
         self.reranker_names = {**_models["RERANKER_LIST"], **_models_private.get("RERANKER_LIST", {})}

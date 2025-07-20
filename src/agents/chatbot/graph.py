@@ -26,6 +26,7 @@ class ChatbotAgent(BaseAgent):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.graph = None
+        # 这是 Python 中 pathlib 模块提供的一个语法糖，可以使用“/”来拼接路径
         self.workdir = Path(sys_config.save_dir) / "agents" / self.name
         self.workdir.mkdir(parents=True, exist_ok=True)
 

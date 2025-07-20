@@ -51,6 +51,9 @@ class AuthUtils:
         to_encode.update({"exp": expire})
 
         # 编码JWT
+        #to_encode ：这是要编码到 JWT 载荷（payload）中的数据
+        #JWT_SECRET_KEY：这是用于编码 JWT 的密钥，JWT 使用该密钥对 to_encode 数据进行签名，以确保令牌的完整性和防篡改性，该密钥应保持私密，不应泄露给客户端或其他服务。
+        #algorithm=JWT_ALGORITHM，指定用于签名的算法。常见的算法有 HS256（对称加密）和 RS256（非对称加密）。
         encoded_jwt = jwt.encode(to_encode, JWT_SECRET_KEY, algorithm=JWT_ALGORITHM)
         return encoded_jwt
 

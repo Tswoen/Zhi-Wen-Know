@@ -5,6 +5,8 @@ from dataclasses import dataclass, field
 from src.agents.registry import Configuration
 from src.agents.tools_factory import get_all_tools
 
+# @dataclass是 Python 中的一个装饰器，用于简化类的定义，并自动生成一些常用方法（如 __init__、__repr__ 等）。
+# 其中，kw_only=True 参数表示所有字段必须通过关键字参数传递，不能通过位置参数传递。
 @dataclass(kw_only=True)
 class ChatbotConfiguration(Configuration):
     """Chatbot 的配置
