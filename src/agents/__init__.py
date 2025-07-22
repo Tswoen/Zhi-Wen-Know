@@ -32,7 +32,7 @@ class AgentManager:
 
 agent_manager = AgentManager()
 agent_manager.register_agent(ChatbotAgent)
-agent_manager.register_agent(ReActAgent)  # 暂时屏蔽 ReActAgent
+#agent_manager.register_agent(ReActAgent)  # 暂时屏蔽 ReActAgent
 agent_manager.init_all_agents()
 
 __all__ = ["agent_manager"]

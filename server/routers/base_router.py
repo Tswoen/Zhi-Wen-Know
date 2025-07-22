@@ -4,7 +4,8 @@ from pathlib import Path
 from fastapi import Request, Body, Depends, HTTPException
 from fastapi import APIRouter
 
-from src import config, knowledge_base, graph_base
+from src import config
+# from src import config, knowledge_base, graph_base
 from server.utils.auth_middleware import get_admin_user, get_superadmin_user
 from server.models.user_model import User
 from src.utils.logging_config import logger
@@ -37,13 +38,13 @@ def get_default_info_config():
     """获取默认信息配置"""
     return {
         "organization": {
-            "name": "江南语析",
-            "short_name": "语析",
+            "name": "智问轻语",
+            "short_name": "智问",
             "logo": "/favicon.svg",
             "avatar": "/avatar.jpg"
         },
         "branding": {
-            "title": "Yuxi-Know",
+            "title": "Zhi-Wen-Know",
             "subtitle": "大模型驱动的知识库管理工具",
             "description": "结合知识库与知识图谱，提供更准确、更全面的回答"
         },
@@ -91,7 +92,7 @@ async def update_config_item(
 
 @base.post("/restart")
 async def restart(current_user: User = Depends(get_superadmin_user)):
-    graph_base.start()
+    # graph_base.start()
     return {"message": "Restarted!"}
 
 @base.get("/log")

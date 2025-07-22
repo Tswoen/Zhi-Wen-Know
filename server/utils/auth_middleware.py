@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from jose import JWTError, jwt
 import re
 
-from server.db_manager import db_manager
+from server import db_manager
 from server.models.user_model import User
 from server.utils.auth_utils import AuthUtils
 

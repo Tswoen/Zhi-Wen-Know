@@ -1,27 +1,27 @@
 # FastAPI 及其依赖
-fastapi
-uvicorn
-starlette
+fastapi~=0.116.1
+uvicorn~=0.35.0
+starlette~=0.47.1
 
 # 数据库相关
-sqlalchemy
+sqlalchemy~=2.0.41
 psycopg2-binary  # 如果使用 PostgreSQL
 mysql-connector-python  # 如果使用 MySQL
 #sqlite3  # 如果使用 SQLite（默认已包含，但可选）
 
 # JWT 认证
-python-jose
+python-jose~=3.5.0
 passlib
 python-multipart
 
 # LangChain 及其依赖
-langchain
-langgraph
-langchain-openai  # 如果使用 OpenAI 的模型
-langchain-core
-pydantic
+langchain~=0.3.26
+langgraph~=0.5.3
+langchain-openai~=0.3.28
+langchain-core~=0.3.69
+pydantic~=2.11.7
 pydantic-settings  # 如果使用了 settings 管理配置
-openai
+openai~=1.97.0
 langchain_huggingface
 langchain_tavily
 
@@ -33,12 +33,20 @@ langchain_tavily
 # vite>=2.9.0,<3.0.0
 
 # 日志与配置
-python-dotenv
+python-dotenv~=1.1.1
 colorlog
 
 # 其他工具库
 jinja2
-requests
+requests~=2.32.4
 python-slugify
 jsonschema
-tqdm
+tqdm~=4.67.1
+pathlib~=1.0.1
+pytz~=2025.2
+loguru~=0.7.3
+pyyaml~=6.0.2
+numpy~=2.3.1
+fitz~=0.0.1.dev2
+aiohttp~=3.12.14
+jwt~=1.4.0
