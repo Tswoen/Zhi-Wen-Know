@@ -1,0 +1,55 @@
+####################################################
+#
+#  models.private.yml 中 的配置会覆盖model.yml中重复的配置修改，
+#
+#####################################################
+
+MODEL_NAMES:
+  dashscope:
+    name: 阿里百炼 (DashScope)
+    url: https://bailian.console.aliyun.com/?switchAgent=10226727&productCode=p_efm#/model-market
+    base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+    default: qwen-max
+    env:
+      - DASHSCOPE_API_KEY
+    models:
+      - qwen-max
+      - qwen-max-latest
+      - qwen3-235b-a22b
+      - qwen3-32b
+
+
+EMBED_MODEL_INFO:
+  siliconflow/BAAI/bge-m3:
+    name: BAAI/bge-m3
+    dimension: 1024
+    base_url: https://api.siliconflow.cn/v1/embeddings
+    api_key: SILICONFLOW_API_KEY
+
+  vllm/Qwen/Qwen3-Embedding-0.6B:
+    name: Qwen3-Embedding-0.6B
+    dimension: 1024
+    base_url: http://localhost:8081/v1/embeddings
+    api_key: no_api_key
+
+  ollama/nomic-embed-text:
+    name: nomic-embed-text
+    base_url: http://localhost:11434/api/embed
+    dimension: 768
+
+  ollama/bge-m3:
+    name: bge-m3
+    base_url: http://localhost:11434/api/embed
+    dimension: 1024
+
+RERANKER_LIST:
+
+  siliconflow/BAAI/bge-reranker-v2-m3:
+    name: BAAI/bge-reranker-v2-m3
+    base_url: https://api.siliconflow.cn/v1/rerank
+    api_key: SILICONFLOW_API_KEY
+
+  vllm/Qwen/Qwen3-Reranker-0.6B:
+    name: Qwen/Qwen3-Reranker-0.6B
+    base_url: http://localhost:8081/v1/rerank
+    api_key: no_api_key
