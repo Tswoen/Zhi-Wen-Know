@@ -18,11 +18,12 @@ from src.utils import logger
 class State(TypedDict):
     messages: Annotated[list[BaseMessage], add_messages]
 
-
+#由于这个类融合了dict和 dataclass 的特性,所以既可以通过字典的形式访问数据config["key"] ，也可以通过对象语法访问数据config.key
 @dataclass(kw_only=True)
 class Configuration(dict):
     """
     定义一个基础 Configuration 供 各类 graph 继承
+
 
     配置优先级:
     1. 运行时配置(RunnableConfig)：最高优先级，直接从函数参数传入
@@ -45,7 +46,7 @@ class Configuration(dict):
         """
         # 获取类默认配置：创建一个实例获取所有默认值
         instance = cls()
-        _fields = {f.name for f in fields(cls) if f.init}
+        _fields = {f.name for f in fields(cls) if f.init} #获取属性并组成一个集合
 
         # 尝试加载文件配置(中等优先级)
         file_config = {}
@@ -77,7 +78,7 @@ class Configuration(dict):
     @classmethod
     def from_file(cls, agent_name: str) -> Configuration:
         """从文件加载配置"""
-        config_file_path = Path(f"src/agents/{agent_name}/config.private.yaml")
+        config_file_path = Path(f"src/agents/{agent_name}/config.private.yaml") #会从当前的工作目录开始寻找指定的路径，也就是项目运行的目录。这里就是项目的根目录（Zhi-Wen-Know）。
         file_config = {}
         if os.path.exists(config_file_path):
             try:

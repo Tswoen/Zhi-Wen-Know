@@ -27,7 +27,7 @@ class ChatbotConfiguration(Configuration):
     )
 
     model: str = field(
-        default="zhipu/glm-4-plus",
+        default="siliconflow/Qwen/Qwen3-8B", #"zhipu/glm-4-plus", 这个值可以被分为分解为provider/model，后面通过provider来决定如何调用模型
         metadata={
             "name": "智能体模型",
             "configurable": True,

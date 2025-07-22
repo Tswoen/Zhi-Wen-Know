@@ -29,7 +29,7 @@ def load_chat_model(fully_specified_name: str, **kwargs) -> BaseChatModel:
         model_name = model_info.get("name") or "custom_model"
         return ChatOpenAI(
             model=model_name,
-            api_key=SecretStr(api_key),
+            api_key=SecretStr(api_key), #对 API 密钥进行加密处理，防止其以明文形式暴露
             base_url=base_url,
         )
 
@@ -41,7 +41,7 @@ def load_chat_model(fully_specified_name: str, **kwargs) -> BaseChatModel:
         from langchain_deepseek import ChatDeepSeek
         return ChatDeepSeek(
             model=model,
-            api_key=SecretStr(api_key),
+            api_key=SecretStr(api_key), #对 API 密钥进行加密处理，防止其以明文形式暴露
             base_url=base_url,
             api_base=base_url,
         )

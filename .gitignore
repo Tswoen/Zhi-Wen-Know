@@ -8,7 +8,7 @@ node_modules
 
 ### common gitignore
 .DS_Store
-.env
+#.env
 .env.local
 .env.*.local
 npm-debug.log*
@@ -18,28 +18,28 @@ yarn-error.log*
 log
 logs
 *.log.*
-*.db
+#*.db
 *.lock
 tmp
-cache
+#cache
 
 ### IDE
 .vscode
 .idea
 *.nogit*
-*.private*
+#*.private*
 *.local*
 *.secret*
 
 *.pdf
-src/data
+#src/data
 */package-lock.json
 web/package-lock.json
-saves
+#saves
 saves_dev
 notebooks
 graphrag
 docker/volumes
 .cursorrules
 
-/models
+#/models
