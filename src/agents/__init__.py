@@ -4,7 +4,7 @@ from src.agents.react import ReActAgent
 
 class AgentManager:
     def __init__(self):
-        self._classes = {}
+        self._classes = {} #存储所有的 agent 类
         self._instances = {}  # 存储已创建的 agent 实例
 
     def register_agent(self, agent_class):

@@ -200,7 +200,6 @@ class BaseAgent:
     async def stream_messages(self, messages: list[str], config_schema: RunnableConfig = None, **kwargs):
         graph = await self.get_graph()
         logger.debug(f"stream_messages: {config_schema}")
-
         async for msg, metadata in graph.astream({"messages": messages}, stream_mode="messages", config=config_schema):
             yield msg, metadata
 
