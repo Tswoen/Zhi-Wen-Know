@@ -107,6 +107,7 @@ async def chat_agent(agent_name: str,
     # 将meta和thread_id整合到config中
     def make_chunk(content=None, **kwargs):
 
+        #使用json.dumps将字段转换为JSON字符串。
         return json.dumps({
             "request_id": meta.get("request_id"),
             "response": content,

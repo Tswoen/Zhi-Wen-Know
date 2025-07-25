@@ -926,8 +926,8 @@ const handleStreamResponse = async (response) => {
 
       buffer += decoder.decode(value, { stream: true });
       const lines = buffer.split('\n');
+      //console.log('接收到的lines数据:', lines);
       buffer = lines.pop() || ''; // 保留最后一行可能不完整的内容
-
       for (const line of lines) {
         if (line.trim()) {
           try {
@@ -968,6 +968,7 @@ const processResponseChunk = async (data) => {
   // if (data.msg.additional_kwargs?.tool_calls) {
   //   console.log("tool_calls", data.msg.additional_kwargs.tool_calls);
   // }
+  //console.log("处理流数据data:", data)
   if (data.status === 'init') {
     // 代表服务端收到请求并返回第一个响应
     state.waitingServerResponse = false;
