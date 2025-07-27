@@ -1,0 +1,4 @@
+#该配置文件属于中等优先级
+model: dashscope/qwen-max
+system_prompt: You are a helpful assistant.
+tools: []

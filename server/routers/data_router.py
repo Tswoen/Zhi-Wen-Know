@@ -13,6 +13,7 @@ data = APIRouter(prefix="/data")
 
 @data.get("/")
 async def get_databases(current_user: User = Depends(get_admin_user)):
+    # 获取所有的知识库
     try:
         database = knowledge_base.get_databases()
     except Exception as e:
@@ -125,6 +126,7 @@ async def upload_file(
     db_id: str | None = Query(None),
     current_user: User = Depends(get_admin_user)
 ):
+    # 上传文件
     if not file.filename:
         raise HTTPException(status_code=400, detail="No selected file")
 

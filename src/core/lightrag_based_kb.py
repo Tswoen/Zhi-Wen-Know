@@ -247,6 +247,7 @@ class LightRagBasedKB:
             "metadata": kwargs,
             "created_at": datetime.now().isoformat()
         }
+        # 持久化到文件中
         self._save_metadata()
 
         # 创建工作目录
@@ -298,6 +299,7 @@ class LightRagBasedKB:
         if not rag:
             raise ValueError(f"Failed to get LightRAG instance for {db_id}")
 
+        # 获取params中的'content_type'值，如果不存在则默认使用'file'
         content_type = params.get('content_type', 'file') if params else 'file'
 
         processed_items_info = []

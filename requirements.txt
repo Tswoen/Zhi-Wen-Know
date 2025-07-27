@@ -1,53 +1,48 @@
-# FastAPI 及其依赖
-fastapi~=0.116.1
-uvicorn~=0.35.0
-starlette~=0.47.1
-
-# 数据库相关
-sqlalchemy~=2.0.41
-psycopg2-binary  # 如果使用 PostgreSQL
-mysql-connector-python  # 如果使用 MySQL
-#sqlite3  # 如果使用 SQLite（默认已包含，但可选）
-
-# JWT 认证
-python-jose~=3.5.0
-passlib
-python-multipart
-
-# LangChain 及其依赖
-langchain~=0.3.26
-langgraph~=0.5.3
-#langgraph.checkpoint.sqlite
-langchain-openai~=0.3.28
-langchain-core~=0.3.69
-pydantic~=2.11.7
-pydantic-settings  # 如果使用了 settings 管理配置
-openai~=1.97.0
-langchain_huggingface
-langchain_tavily
-
-# 前端构建依赖（Vue）
-# 注意：这些通常在 package.json 中管理，但如果你使用 Python 构建前端（如通过 Pyodide 或 FastAPI 的静态文件服务）
-# vue>=3.2.0
-# vue-router>=4.0.0
-# pinia>=2.0.0
-# vite>=2.9.0,<3.0.0
-
-# 日志与配置
-python-dotenv~=1.1.1
-colorlog
-
-# 其他工具库
-jinja2
-requests~=2.32.4
-python-slugify
-jsonschema
-tqdm~=4.67.1
+asyncpg>=0.30.0
+colorlog>=6.9.0
+dashscope>=1.23.2
+docx2txt>=0.9
+fastapi>=0.115.12
+langchain-community>=0.3.22
+langchain-deepseek>=0.1.3
+langchain-huggingface>=0.2.0
+langchain-openai>=0.3.14
+langchain-tavily>=0.2.3
+langchain-together>=0.3.0
+langgraph>=0.3.34
+langgraph-checkpoint-sqlite>=2.0.7
+langgraph-cli[inmem]>=0.1.54
+langsmith>=0.3.37
+lightrag-hku>=1.3.9
+llama-index>=0.12.33
+llama-index-readers-file>=0.4.7
+mineru>=2.0.6
+neo4j>=5.28.1
+networkx>=3.5
+openai>=1.76.0
+opencv-python-headless>=4.11.0.86
+paddleocr>=2.10.0
+pyjwt>=2.8.0
+pymilvus>=2.5.8
+pymupdf>=1.25.5
+python-dotenv>=1.1.0
+python-jose[cryptography]>=3.4.0
+python-multipart>=0.0.20
+pyyaml>=6.0.2
+qianfan>=0.4.12.3
+rapidocr-onnxruntime>=1.4.4
+tavily-python>=0.7.0
+uvicorn[standard]>=0.34.2
 pathlib~=1.0.1
+langchain~=0.3.26
 pytz~=2025.2
 loguru~=0.7.3
-pyyaml~=6.0.2
-numpy~=2.3.1
+langchain-core~=0.3.72
+pydantic~=2.11.7
+requests~=2.32.4
+numpy~=1.26.4
 fitz~=0.0.1.dev2
+tqdm~=4.67.1
 aiohttp~=3.12.14
-PyJWT #使用jwt时需要
+sqlalchemy~=2.0.41
+starlette~=0.47.1
