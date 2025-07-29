@@ -100,10 +100,10 @@ def calculator(a: float, b: float, operation: str) -> float:
     else:
         raise ValueError(f"Invalid operation: {operation}, only support add, subtract, multiply, divide")
 
-# @tool
-# def query_knowledge_graph(query: Annotated[str, "The keyword to query knowledge graph."]):
-#     """Use this to query knowledge graph."""
-#     return graph_base.query_node(query, hops=2)
+@tool
+def query_knowledge_graph(query: Annotated[str, "The keyword to query knowledge graph."]):
+    """Use this to query knowledge graph."""
+    return graph_base.query_node(query, hops=2)
 
 
 

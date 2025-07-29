@@ -406,6 +406,7 @@ class LightRagBasedKB:
 
         # 删除文件记录
         if file_id in self.files_meta:
+            #del是python中内置的关键字，用于删除变量，这里是删除字典中的键值对。
             del self.files_meta[file_id]
             self._save_metadata()
 
@@ -478,7 +479,7 @@ class LightRagBasedKB:
             raise ValueError(f"Database {db_id} not found")
 
         try:
-            # 设置查询参数
+            # 设置查询参数（用|来合并两字典，如果有相同的键后面的会覆盖前面的）
             params_dict = {
                 "mode": "mix",
                 "only_need_context": True,
