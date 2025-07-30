@@ -13,10 +13,12 @@ langgraph>=0.3.34
 langgraph-checkpoint-sqlite>=2.0.7
 langgraph-cli[inmem]>=0.1.54
 langsmith>=0.3.37
-lightrag-hku>=1.3.9
+#lightrag-hku>=1.3.9
+lightrag-hku>=1.4.1
 llama-index>=0.12.33
 llama-index-readers-file>=0.4.7
 mineru>=2.0.6
+milvus-lite
 neo4j>=5.28.1
 networkx>=3.5
 openai>=1.76.0
@@ -30,6 +32,7 @@ python-jose[cryptography]>=3.4.0
 python-multipart>=0.0.20
 pyyaml>=6.0.2
 qianfan>=0.4.12.3
+pillow #为了使用PIL模块
 rapidocr-onnxruntime>=1.4.4
 tavily-python>=0.7.0
 uvicorn[standard]>=0.34.2
@@ -41,7 +44,8 @@ langchain-core~=0.3.72
 pydantic~=2.11.7
 requests~=2.32.4
 numpy~=1.26.4
-fitz~=0.0.1.dev2
+PyMuPDF #为了使用其中的fitz模块
+#fitz~=0.0.1.dev2
 tqdm~=4.67.1
 aiohttp~=3.12.14
 sqlalchemy~=2.0.41

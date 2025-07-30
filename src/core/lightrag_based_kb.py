@@ -95,7 +95,7 @@ class LightRagBasedKB:
                 workspace=db_id,
                 llm_model_func=self._get_llm_func(llm_info),
                 embedding_func=self._get_embedding_func(embed_info),
-                vector_storage="MilvusVectorDBStorage",
+                vector_storage="FaissVectorDBStorage",
                 kv_storage="JsonKVStorage",
                 graph_storage="Neo4JStorage",
                 doc_status_storage="JsonDocStatusStorage",
@@ -157,6 +157,8 @@ class LightRagBasedKB:
                 base_url=model.base_url.replace("/embeddings", ""),
             ),
         )
+
+
 
     async def _process_file_to_markdown(self, file_path: str, params: dict | None = None) -> str:
         """将不同类型的文件转换为 markdown 格式"""

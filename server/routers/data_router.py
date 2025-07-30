@@ -4,7 +4,8 @@ import traceback
 from fastapi import APIRouter, File, UploadFile, HTTPException, Depends, Body, Form, Query
 
 from src.utils import logger, hashstr
-from src import executor, config, knowledge_base, graph_base
+from src import executor, config, knowledge_base
+# from src import graph_base
 from server.utils.auth_middleware import get_admin_user
 from server.models.user_model import User
 

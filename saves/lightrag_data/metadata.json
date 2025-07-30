@@ -1,0 +1,26 @@
+{
+  "databases": {
+    "kb_f5636c6216002f38b95429a522a6672e": {
+      "name": "test",
+      "description": "如果有任何不会的内容，或不清楚的内容，可以访问这个知识库来获取基础信息",
+      "embed_info": {
+        "name": "BAAI/bge-m3",
+        "dimension": 1024,
+        "base_url": "https://api.siliconflow.cn/v1/embeddings",
+        "api_key": "SILICONFLOW_API_KEY"
+      },
+      "metadata": {},
+      "created_at": "2025-07-30T10:12:12.379193"
+    }
+  },
+  "files": {
+    "file_a31e72": {
+      "database_id": "kb_f5636c6216002f38b95429a522a6672e",
+      "filename": "算法刷题_7729.txt",
+      "path": "saves\\lightrag_data\\kb_f5636c6216002f38b95429a522a6672e\\uploads\\算法刷题_7729.txt",
+      "file_type": "txt",
+      "status": "done",
+      "created_at": 1753866067.0171542
+    }
+  }
+}
