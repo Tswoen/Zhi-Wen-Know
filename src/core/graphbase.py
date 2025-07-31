@@ -38,7 +38,7 @@ class GraphDatabase:
         password = os.environ.get("NEO4J_PASSWORD", "0123456789")
         logger.info(f"Connecting to Neo4j: {uri}/{self.kgdb_name}")
         try:
-            self.driver = GD.driver(f"{uri}/{self.kgdb_name}", auth=(username, password))
+            self.driver = GD.driver(f"{uri}/{self.kgdb_name}", auth=(username, password)) #这一步会真正的建立连接
             self.status = "open"
             logger.info(f"Connected to Neo4j: {self.get_graph_info(self.kgdb_name)}")
             # 连接成功后保存图数据库信息
@@ -264,7 +264,7 @@ class GraphDatabase:
         """
         tx.run(query)
 
-    def query_node(self, entity_name, threshold=0.9, kgdb_name='neo4j', hops=2, max_entities=5, **kwargs):
+    def  query_node(self, entity_name, threshold=0.9, kgdb_name='neo4j', hops=2, max_entities=5, **kwargs):
         """知识图谱查询节点的入口:"""
         assert self.driver is not None, "Database is not connected"
         # TODO 添加判断节点数量为 0 停止检索
@@ -325,6 +325,7 @@ class GraphDatabase:
         self.use_database(kgdb_name)
 
         def query(tx, entity_name, hops, limit):
+            # 查找与指定实体相关的节点和关系
             try:
                 query_str = f"""
                 MATCH (n {{name: $entity_name}})-[r*1..{hops}]-(m)
@@ -430,9 +431,11 @@ class GraphDatabase:
 
     def get_embedding(self, text):
         if isinstance(text, list):
+            # 返回多个文本的嵌入向量表示，批次大小设为40
             outputs = self.embed_model.batch_encode(text, batch_size=40)
             return outputs
         else:
+            # 返回单个文本的嵌入向量表示
             outputs = self.embed_model.encode([text])[0]
             return outputs
 
@@ -443,9 +446,11 @@ class GraphDatabase:
         """, name=entity_name, embedding=embedding)
 
     def get_graph_info(self, graph_name="neo4j"):
+        # 获取图数据库信息（如节点数，关系数等）
         assert self.driver is not None, "Database is not connected"
         self.use_database(graph_name)
         def query(tx):
+            # 帮助了解数据库的规模和复杂度
             entity_count = tx.run("MATCH (n) RETURN count(n) AS count").single()["count"]
             relationship_count = tx.run("MATCH ()-[r]->() RETURN count(r) AS count").single()["count"]
             triples_count = tx.run("MATCH (n)-[r]->(m) RETURN count(n) AS count").single()["count"]
